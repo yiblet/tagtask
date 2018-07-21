@@ -4,3 +4,9 @@ version = "0.1.0"
 authors = ["Shalom Yiblet <shalom.yiblet@gmail.com>"]
 
 [dependencies]
+futures = "*"
+futures-cpupool = "*"
+state = { version = "*", features = ["tls", 'const_fn'] }
+termion = "*"    
+ropey = "*"
+derive_builder = "*"
