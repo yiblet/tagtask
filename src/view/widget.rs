@@ -3,7 +3,7 @@ extern crate ropey;
 
 use view::space::Space;
 
-#[derive(Debug, PartialEq, Eq, Clone,Default, Builder)]
+#[derive(Debug, PartialEq, Eq, Clone, Default, Builder)]
 #[builder(default, pattern = "owned")]
 pub struct Square {
     top: u16,
@@ -26,7 +26,7 @@ pub struct Widget {
 impl Widget {
     #[allow(dead_code)]
     pub fn new() -> Self {
-        Self {  
+        Self {
             border: false,
             width: 0,
             height: 0,
@@ -49,9 +49,8 @@ impl Space for Widget {
     fn width(&self) -> u16 {
         self.width
     }
-    
+
     fn height(&self) -> u16 {
         self.height
     }
-    
 }

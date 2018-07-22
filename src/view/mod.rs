@@ -1,2 +1,2 @@
-pub mod widget;
 pub mod space;
+pub mod widget;

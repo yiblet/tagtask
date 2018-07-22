@@ -1,14 +1,13 @@
 extern crate futures;
 extern crate futures_cpupool;
-extern crate state;
+
+extern crate lazy_static;
 
 use futures_cpupool::*;
 
-pub static POOL: state::LocalStorage<CpuPool> = state::LocalStorage::new();
-
-pub fn init() {
-    if let None = POOL.try_get() {
-        let pool = CpuPool::new_num_cpus();
-        POOL.set(move || pool.clone());
+pub fn get() -> CpuPool {
+    lazy_static! {
+        static ref POOL: CpuPool = CpuPool::new_num_cpus();
     }
+    return POOL.clone();
 }
