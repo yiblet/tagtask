@@ -12,6 +12,16 @@ pub struct Square {
     left: u16,
 }
 
+impl Square {
+    pub fn horizontal(&self) -> u16 {
+        self.right + self.left
+    }
+
+    pub fn vertical(&self) -> u16 {
+        self.top + self.bottom
+    }
+}
+
 #[derive(Debug, PartialEq, Clone, Builder, Default)]
 #[builder(default, pattern = "owned")]
 pub struct Widget {
@@ -39,11 +49,11 @@ impl Widget {
 
 impl Space for Widget {
     fn full_width(&self) -> u16 {
-        self.width + self.margin.left + self.margin.right
+        self.width + self.margin.horizontal()
     }
 
     fn full_height(&self) -> u16 {
-        self.height + self.margin.top + self.margin.bottom
+        self.height + self.margin.vertical()
     }
 
     fn width(&self) -> u16 {
