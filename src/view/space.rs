@@ -1,25 +1,26 @@
+use std::ops::Deref;
 
-pub trait Space : PartialEq {
+pub trait Space: PartialEq {
     fn full_width(&self) -> u16;
     fn full_height(&self) -> u16;
     fn width(&self) -> u16;
     fn height(&self) -> u16;
 }
 
-impl <T: Space> Space for Box<T> {
+impl<T: Space, D: Deref<Target = T> + PartialEq> Space for D {
     fn full_width(&self) -> u16 {
-        self.as_ref().full_width()
+        self.deref().full_width()
     }
-    
+
     fn full_height(&self) -> u16 {
-        self.as_ref().full_height()
+        self.deref().full_height()
     }
 
     fn width(&self) -> u16 {
-        self.as_ref().width()
+        self.deref().width()
     }
-    
+
     fn height(&self) -> u16 {
-        self.as_ref().height()
+        self.deref().height()
     }
 }
